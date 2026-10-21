@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Cidade</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Maratona de São Paulo</div>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="inscricoes.html">Inscrições</a>
+        <a href="cidade.html">A Cidade</a>
+        <a href="maratonas.html">Maratonas</a>
+        <a href="termo.html">Termo</a>
+        <a href="faq.html">FAQ</a>
+    </nav>
+</header>
+
+<main>
+
+    <h1>A Cidade de São Paulo</h1>
+
+    <p>
+        São Paulo oferece diversos pontos turísticos,
+        parques, monumentos históricos e paisagens naturais
+        que tornam a experiência da maratona ainda mais especial.
+    </p>
+
+    <h2>Galeria de Pontos Turísticos</h2>
+
+    <div class="galeria">
+
+        <img class="foto" src="images/sao-paulo-1.jpg">
+        <img class="foto" src="images/sao-paulo-2.jpg">
+        <img class="foto" src="images/sao-paulo-3.jpg">
+        <img class="foto" src="images/sao-paulo-4.jpg">
+        <img class="foto" src="images/sao-paulo-5.jpg">
+        <img class="foto" src="images/sao-paulo-6.jpg">
+        <img class="foto" src="images/sao-paulo-7.jpg">
+        <img class="foto" src="images/sao-paulo-8.jpg">
+
+    </div>
+
+    <div id="modal">
+        <img id="imagemGrande">
+    </div>
+
+</main>
+
+<footer>
+    <p>Maratona de São Paulo 2026</p>
+</footer>
+
+<script>
+const fotos = document.querySelectorAll(".foto");
+
+const modal = document.getElementById("modal");
+
+const imagemGrande = document.getElementById("imagemGrande");
+
+fotos.forEach(foto => {
+
+    foto.addEventListener("click", () => {
+
+        modal.style.display = "flex";
+
+        imagemGrande.src = foto.src;
+
+    });
+
+});
+
+modal.onclick = () => {
+
+    modal.style.display = "none";
+
+};
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Inscrições</title>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">Maratona de São Paulo</div>
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="inscricoes.html">Inscrições</a>
+            <a href="cidade.html">A Cidade</a>
+            <a href="maratonas.html">Maratonas</a>
+            <a href="termo.html">Termo</a>
+            <a href="faq.html">FAQ</a>
+        </nav>
+
+<link rel="stylesheet" e href="css/style.css">
+</header>
+
+<main>
+
+<h1>Inscrição</h1>
+
+<form id="formInscricao">
+
+<input type="text" id="nome" placeholder="Nome" required>
+
+<input type="text" id="endereco" placeholder="Endereço" required>
+
+<input type="text" id="filiacao" placeholder="Filiação" required>
+
+<input type="date" id="nascimento" required>
+
+<input type="number" id="peso" placeholder="Peso (kg)" required>
+
+<input type="number" id="altura" placeholder="Altura (m)" step="0.01" required>
+
+<input type="text" id="imc" placeholder="IMC" readonly>
+<p id="status-imc"></p>
+
+<div class="regua-imc">
+
+    <div class="faixa baixo">
+        Abaixo de 17
+    </div>
+
+    <div class="faixa ideal">
+        17 a 35
+    </div>
+
+    <div class="faixa alto">
+        Acima de 35
+    </div>
+
+</div>
+
+<button type="submit">
+Enviar Inscrição
+</button>
+
+</form>
+
+</main>
+
+<footer>
+<p>Maratona de São Paulo 2026</p>
+</footer>
+
+<script>
+
+const peso = document.getElementById("peso");
+const altura = document.getElementById("altura");
+const imcCampo = document.getElementById("imc");
+const statusIMC = document.getElementById("status-imc");
+
+function calcularIMC(){
+
+    let valorPeso = parseFloat(peso.value);
+    let valorAltura = parseFloat(altura.value);
+
+    if(!valorPeso || !valorAltura){
+        return;
+    }
+
+    let imc = valorPeso / (valorAltura * valorAltura);
+
+    imcCampo.value = imc.toFixed(2);
+
+    if(imc < 17){
+        statusIMC.innerHTML = "IMC abaixo do permitido para a prova";
+        statusIMC.style.color = "red";
+    }
+    else if(imc > 35){
+        statusIMC.innerHTML = "IMC acima do permitido para a prova";
+        statusIMC.style.color = "red";
+    }
+    else{
+        statusIMC.innerHTML = "IMC apto para inscrição";
+        statusIMC.style.color = "green";
+    }
+}
+
+peso.addEventListener("input", calcularIMC);
+altura.addEventListener("input", calcularIMC);
+
+document.getElementById("formInscricao")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let imc =
+        parseFloat(imcCampo.value);
+
+    if(imc < 17 || imc > 35){
+
+        alert("IMC fora da faixa permitida (17 a 35).");
+
+        return;
+    }
+
+    alert("Inscrição realizada com sucesso!");
+
+});
+
+</script>
+<script>
+
+const fotos =
+document.querySelectorAll(".foto");
+
+const modal =
+document.getElementById("modal");
+
+const grande =
+document.getElementById("imagemGrande");
+
+fotos.forEach(foto=>{
+
+foto.addEventListener("click",()=>{
+
+modal.style.display="flex";
+
+grande.src=foto.src;
+
+});
+
+});
+
+modal.onclick=()=>{
+modal.style.display="none";
+};
+
+</script>
+
+</body>
+</html>
